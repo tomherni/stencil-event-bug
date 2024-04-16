@@ -6,56 +6,45 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+    interface MyChild {
+    }
+    interface MyParent {
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLMyChildElement extends Components.MyChild, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLMyChildElement: {
+        prototype: HTMLMyChildElement;
+        new (): HTMLMyChildElement;
+    };
+    interface HTMLMyParentElement extends Components.MyParent, HTMLStencilElement {
+    }
+    var HTMLMyParentElement: {
+        prototype: HTMLMyParentElement;
+        new (): HTMLMyParentElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "my-child": HTMLMyChildElement;
+        "my-parent": HTMLMyParentElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+    interface MyChild {
+    }
+    interface MyParent {
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "my-child": MyChild;
+        "my-parent": MyParent;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "my-child": LocalJSX.MyChild & JSXBase.HTMLAttributes<HTMLMyChildElement>;
+            "my-parent": LocalJSX.MyParent & JSXBase.HTMLAttributes<HTMLMyParentElement>;
         }
     }
 }
